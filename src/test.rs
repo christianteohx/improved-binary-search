@@ -7,8 +7,8 @@ fn test_iterations() -> Result<(), Box<dyn std::error::Error>> {
 
   let mut arr: Vec<u32> = vec![];
 
-  for i in 0..100 {
-    arr.push(i);
+  for i in 0..10000 {
+    arr.push(i*10);
   }
 
   let num = 14;
@@ -16,7 +16,9 @@ fn test_iterations() -> Result<(), Box<dyn std::error::Error>> {
   let improved_results = algorithms::improved_binary_search(num, &arr);
   println!("Improved iterations: {}", improved_results);
 
-  let results = algorithms::binary_search(num, &arr, false);
+  let high = (arr.len() as u32) - 1;
+
+  let results = algorithms::binary_search(num, &arr, false, 0, high);
   println!("Iterations: {}", results);
 
   Ok(())
@@ -33,7 +35,7 @@ fn test_improved_binary_search() -> Result<(), Box<dyn std::error::Error>> {
   let mut time_list: Vec<f32> = Vec::new();
   let mut iterations: Vec<u32> = Vec::new();
 
-  for _ in 0..test_count {
+  for a in 0..test_count {
 
     let arr = algorithms::create_array();
     let len = arr.len();
@@ -43,17 +45,17 @@ fn test_improved_binary_search() -> Result<(), Box<dyn std::error::Error>> {
 
     for i in 0..search_count {
 
+      println!("\nTest: {}, Search: {}", a, i);
+
       let mut num = rand::random::<u32>() % len as u32;
       
-      if num < min {
-        num *= min;
-      } 
+      // if num < min {
+      //   num *= min;
+      // } 
 
-      if num > max {
-        num %= max;
-      }
-
-      num = min + 10;
+      // if num > max {
+      //   num %= max;
+      // }
 
       let improved_start = Instant::now();
 
@@ -64,8 +66,10 @@ fn test_improved_binary_search() -> Result<(), Box<dyn std::error::Error>> {
       improved_time_list.push(improved_time);
       improved_iterations.push(improved_result);
 
+      let high = (arr.len() as u32) - 1;
+
       let start = Instant::now();
-      let results = algorithms::binary_search(num, &arr, false);
+      let results = algorithms::binary_search(num, &arr, false, 0, high);
       let end = Instant::now();
       let time = (end-start).as_secs_f32();
       time_list.push(time);
