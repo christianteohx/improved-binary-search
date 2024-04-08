@@ -42,7 +42,7 @@ This takes only 1 iteration.<br />
 > | Improved | 0.000013697785  | 26.573444         |
 > | Normal   | 0.000003302419  | 26.323988         |
 > 
-> Regular binary search uses less iterations than improved binary search 41850 times. 
+> Regular binary search uses less iterations than improved binary search 333996 times. 
 
 > [!IMPORTANT]
 > | device_name | Device           | RAM  | Processor                       |
