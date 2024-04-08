@@ -65,7 +65,7 @@ pub fn improved_binary_search(num:u32, arr: &Vec<u32>) -> u32 {
 
         // println!("low: {}, high: {}", low, high);
 
-        if high - low == 0 {
+        if high == low {
             return iteration
         }
 
@@ -78,17 +78,17 @@ pub fn improved_binary_search(num:u32, arr: &Vec<u32>) -> u32 {
     }
 
     // println!("Improved local iterations: {}", iteration);
-
-    iteration + binary_search(num, &arr[low as usize..high as usize].to_vec(), true)
+    // println!("low: {}, high: {}", low, high);
+    let binary_iterations = binary_search(num, &arr, true, low, high);
+    println!("Improved used {} + {} = {} iterations", iteration, binary_iterations, iteration + binary_iterations);
+    iteration + binary_search(num, &arr, true, low, high)
 
 }
 
-pub fn binary_search(num:u32, arr: &Vec<u32>, from_improved: bool) -> u32{
+pub fn binary_search(num:u32, arr: &Vec<u32>, from_improved: bool, mut low: u32, mut high: u32) -> u32{
 
     // println!("arr: {:?}", arr);
 
-    let mut low = 0;
-    let mut high = (arr.len() as u32) - 1;
     let mut iteration = 0;
 
     while low <= high{
@@ -120,7 +120,7 @@ pub fn binary_search(num:u32, arr: &Vec<u32>, from_improved: bool) -> u32{
     }
 
     if from_improved {
-        println!("Improved used {} iterations", iteration);
+        // println!("Improved used {} iterations", iteration);
     } else {
         println!("Binary used {} iterations", iteration);
     }

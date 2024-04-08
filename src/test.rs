@@ -72,8 +72,10 @@ fn test_improved_binary_search() -> Result<(), Box<dyn std::error::Error>> {
       improved_time_list.push(improved_time);
       improved_iterations.push(improved_result);
 
+      let high = (arr.len() as u32) - 1;
+
       let start = Instant::now();
-      let results = algorithms::binary_search(num, &arr, false);
+      let results = algorithms::binary_search(num, &arr, false, 0, high);
       let end = Instant::now();
       let time = (end-start).as_secs_f32();
       time_list.push(time);
