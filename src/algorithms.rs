@@ -1,22 +1,33 @@
 
 use rand::random;
 
-const DEFAULT_ARRAY_SIZE:usize = 100000;
+// const DEFAULT_ARRAY_SIZE:usize = 100000;
 
-pub fn create_array() -> Vec<u32> {
+pub fn create_random_array(array_size: usize) -> Vec<u32> {
 
   let mut arr = Vec::new();
 
   let mut num: u32 = 0;
 
-  for _ in 0..DEFAULT_ARRAY_SIZE {
+  for _ in 0..array_size {
 
-    num += (random::<u32>() % 100) + 1;
+    num += (random::<u32>() % u32::max_value()) + 1;
     arr.push(num);
   }
-
   arr
-  
+}
+
+pub fn create_step_array(array_size: usize, step_size: u32) -> Vec<u32> {
+
+  let mut arr = Vec::new();
+
+//   let mut num: u32 = 0;
+
+  for i in 0..array_size {
+
+    arr.push(i as u32 * step_size);
+  }
+  arr
 }
 
 pub fn improved_binary_search(num:u32, arr: &Vec<u32>) -> u32 {
@@ -38,9 +49,18 @@ pub fn improved_binary_search(num:u32, arr: &Vec<u32>) -> u32 {
         // println!("low_diff: {}, high_diff: {}", low_diff, high_diff);
 
         if low_diff < high_diff {
-            high = low + low_diff + 1;
+            if low + low_diff - 1 < high {
+                high = low + low_diff - 1;
+            } else {
+                break;
+            }
         } else {
-            low = high - high_diff - 1;
+            if high > high_diff - 1 {
+                low = high - high_diff - 1;
+            } else {
+                break;
+            }
+            
         }
 
         // println!("low: {}, high: {}", low, high);
