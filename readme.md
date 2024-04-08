@@ -34,6 +34,15 @@ This takes only 1 iteration.<br />
 > | Normal   | 0.0000036157471 | 26.32271          |
 > 
 > Regular binary search uses less iterations than improved binary search 41850 times. 
+>
+> Most recent results as of 4/8/2024 10:30AM on device_2 <br />
+> Array Size: 100,000,000 &nbsp; Test count: 1000 &nbsp; Search count: 1000
+> |          |Average Time     | Average iterations|
+> | -------- | --------------- |------------------ |
+> | Improved | 0.000013697785  | 26.573444         |
+> | Normal   | 0.000003302419  | 26.323988         |
+> 
+> Regular binary search uses less iterations than improved binary search 41850 times. 
 
 > [!IMPORTANT]
 > | device_name | Device           | RAM  | Processor                       |
