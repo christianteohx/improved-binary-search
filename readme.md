@@ -1,6 +1,6 @@
 **IDEA** <br />
 Let's say we have an array that goes from 1 to 20 and we want to look for 4.<br />
-       v<br />
+-------v--------------------------------------------<br />
 |1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|<br />
 <br />
 **Binary Search** <br />
