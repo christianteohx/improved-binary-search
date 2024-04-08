@@ -17,3 +17,25 @@ If we assume the smallest difference between any number is 1, the maximum distan
 Just by taking the range with the smallest difference, our search scope will be reduced in the following way:<br />
 1 -> 20, 1 -> 4, found 4.<br />
 This takes only 1 iteration.<br />
+
+>[!NOTE]
+>This works theoretically (at least for me) but for some reason unbeknowest to all sapiens that are still able to convert oxygen into carbon dioxide, my test results still shows that binary search uses less iteration???????? and that the improved binary takes more time on average to find the key. (This might have something to do with computing the min/max and differences every time, but I don't see how it makes such a difference since the difference in average iteration used is not that much)
+
+>[!NOTE]
+>The extra iterations and time taken might just be the way I'm calculating the iterations or it could also be the redundant binary search while switching from the improved binary search to regular binary search.
+
+> [!IMPORTANT]
+> Most recent results as of 4/8/2024 2:59AM on device_1 <br />
+> Array Size: 100,000,000 &nbsp; Test count: 100 &nbsp; Search count: 1000
+> |          |Average Time     | Average iterations|
+> | -------- | --------------- |------------------ |
+> | Improved | 0.000007823006  | 26.69221          |
+> | Normal   | 0.0000036157471 | 26.32271          |
+> 
+> Regular binary search uses less iterations than improved binary search 41850 times. 
+
+> [!IMPORTANT]
+> | device_name | Device           | RAM  | Processor                       |
+> | ----------- | ---------------- | ---- | ------------------------------- |
+> | device_1    | Macbook Pro 2020 | 16GB | 1.4 GHz Quad-Core Intel Core i5 |
+> | device_2    | Macbook Air M2   | 8GB  | M2 Chip                         |
