@@ -20,10 +20,10 @@ This takes only 1 iteration.<br />
 \* We switch to binary search once the newly reduced range does not eliminate more than half of the previous range since binary search would be more efficient then (eliminates half the previous range).<br />
 \* Also, this improved binary search is only meant to reduce the range used in the first few rounds.<br /><br />
 >[!NOTE]
->This works theoretically (at least that's what my barely functioning brains thinks) but for some reason unbeknowest to all sapiens that are still able to convert oxygen into carbon dioxide, my test results still shows that binary search uses less iteration???????? and that the improved binary takes more time on average to find the key. (This might have something to do with computing the min/max and differences every time, but I don't see how it makes such a difference since the difference in average iteration used is not that much)
+>4.7.2024 - This works theoretically (at least that's what my barely functioning brains thinks) but for some reason unbeknowest to all sapiens that are still able to convert oxygen into carbon dioxide, my test results still shows that binary search uses less iteration???????? and that the improved binary takes more time on average to find the key. (This might have something to do with computing the min/max and differences every time, but I don't see how it makes such a difference since the difference in average iteration used is not that much)
 
 >[!NOTE]
->The extra iterations and time taken might just be the way I'm calculating the iterations or it could also be the redundant binary search while switching from the improved binary search to regular binary search. NEED TO FIND A BETTER WAY TO SWITCH ONCE IMPROVED BINARY SEARCH BECOMES LESS EFFICIENT!!!! 
+>4.7.2024 The extra iterations and time taken might just be the way I'm calculating the iterations or it could also be the redundant binary search while switching from the improved binary search to regular binary search. NEED TO FIND A BETTER WAY TO SWITCH ONCE IMPROVED BINARY SEARCH BECOMES LESS EFFICIENT!!!! 
 
 > [!IMPORTANT]
 > Most recent results as of 4/8/2024 2:59AM on device_1 <br />
