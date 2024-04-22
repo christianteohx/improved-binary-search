@@ -1,54 +1,34 @@
-# IDEA <br />
-Let's say we have an array that goes from 1 to 20 and we want to look for 4.<br />
-------v-----------------------------------------<br />
-|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|<br />
-<br />
-## Binary Search <br />
-With binary search, our search range goes from <br />
-1 -> 20, 1 -> 10, 1 -> 5, 2 -> 5, found 4. <br />
-This takes 3 iterations.<br />
-<br />
-But what if we can reduce the range using the number being searched?<br />
-Since we are looking for 4, we can calculate the maximum distance between the number being searched and the smallest/largest number in the array.<br />
-<br />
-## Improved? Binary Search <br />
-For example, min = 1 and max = 20.<br />
-If we assume the smallest difference between any number is 1, the maximum distance between 4 and 1 is 3, while the maximum number between 20 and 4 is 16.<br />
-Just by taking the range with the smallest difference, our search scope will be reduced in the following way:<br />
-1 -> 20, 1 -> 4, found 4.<br />
-This takes only 1 iteration.<br />
-\* We switch to binary search once the newly reduced range does not eliminate more than half of the previous range since binary search would be more efficient then (eliminates half the previous range).<br />
-\* Also, this improved binary search is only meant to reduce the range used in the first few rounds.<br /><br />
->[!NOTE]
->4.8.2024 9:45PM<br />
-> I think I have found the right way to use this. Currently only doing this once the switching to binary search right after and the results are what I initially expected from this experiment (but it's not as efficient as what I thought and it still takes more time than a regular binary search). Will try doing it twice before switching to regular binary search and examine the results. Once that's done, I will look into how to determine the number of times to use this scope reducing method and the maths behind it. <br />
-> I should also write the results into a file (.dat? for better space management) and process it using matplotlib to see which cases is it more efficient in (ex. start of list, middle of list, end of list). My guess would be at the near ends of both lists.<br ><br />
-4.7.2024<br />
-> This works theoretically (at least that's what my barely functioning brains thinks) but for some reason unbeknowest to all sapiens that are still able to convert oxygen into carbon dioxide, my test results still shows that binary search uses less iteration???????? and that the improved binary takes more time on average to find the key. (This might have something to do with computing the min/max and differences every time, but I don't see how it makes such a difference since the difference in average iteration used is not that much)<br /><br />
->4.7.2024<br />
-> The extra iterations and time taken might just be the way I'm calculating the iterations or it could also be the redundant binary search while switching from the improved binary search to regular binary search. NEED TO FIND A BETTER WAY TO SWITCH ONCE IMPROVED BINARY SEARCH BECOMES LESS EFFICIENT!!!! 
+# Research Report: Improved Binary Search Experiment #
+## Abstract ##
 
-> [!IMPORTANT]
-> Most recent results as of 4/8/2024 2:59AM on device_1 <br />
-> Array Size: 100,000,000 &nbsp; Test count: 100 &nbsp; Search count: 1000
-> |          |Average Time     | Average iterations|
-> | -------- | --------------- |------------------ |
-> | Improved | 0.000007823006  | 26.69221          |
-> | Normal   | 0.0000036157471 | 26.32271          |
-> 
-> Regular binary search uses less iterations than improved binary search 41850 times. 
->
-> Most recent results as of 4/8/2024 11:38PM on device_2 <br />
-> Array Size: 100,000,000 &nbsp; Test count: 1000 &nbsp; Search count: 1000
-> |          | Average Time     | Average iterations |
-> | -------- | ---------------- | ------------------ |
-> | Improved | 0.0000018110245  | 23.312708          |
-> | Normal   | 0.0000012468163  | 23.319567          |
->  
-> Improved binary search uses less iterations than improved binary search 3272 times. 
+This research investigates an enhancement to the traditional binary search algorithm. By dynamically adjusting the search range based on the target value's relative position within the data, this "Improved Binary Search" aims to reduce the average number of iterations needed to locate a value. </br>
 
-> [!IMPORTANT]
-> | device_name | Device           | RAM  | Processor                       |
-> | ----------- | ---------------- | ---- | ------------------------------- |
-> | device_1    | Macbook Pro 2020 | 16GB | 1.4 GHz Quad-Core Intel Core i5 |
-> | device_2    | Macbook Air M2   | 8GB  | M2 Chip                         |
+## Introduction ##
+Binary search is a well-known efficient algorithm for finding items in a sorted array with a runtime complexity of O(log n). However, this study introduces a variation that attempts to further reduce the number of iterations by leveraging the target's probable location derived from its value relative to the range's bounds.
+
+## Experiment Description ##
+
+The experiment was conducted using arrays ranging from size 10 to 100,000,000. Two versions of binary search were compared:
+
+    Traditional Binary Search - which splits the array into halves.
+    Improved Binary Search - which initially narrows down the search space based on the proximity of the target to the minimum or maximum values within the array.
+
+The hypothesis posits that the Improved Binary Search can outperform traditional binary search in scenarios where the target's proximity to either end of the array significantly reduces the initial search space.
+
+## Methodology ##
+Arrays of various sizes were generated, and both search methods were applied to locate randomly chosen targets. The number of iterations and the time taken for each search were recorded. The experiment was performed on different hardware to assess performance across various system configurations.
+
+## Results ##
+Initial results showed that while the Improved Binary Search often performed fewer iterations in the first few rounds, the overall benefit was counteracted by the overhead of calculating the minimum and maximum distances. In many cases, the traditional binary search proved more efficient in terms of time, even though the iteration counts were similar.
+
+## Discussion ##
+The efficiency of the Improved Binary Search depends heavily on the distribution of the target values and the array's size. The added computational overhead of repeatedly calculating distances can negate the gains from reduced iterations unless the search space is significantly narrowed down in the first pass.
+
+## Conclusion ##
+The Improved Binary Search offers a theoretical improvement over traditional binary search by reducing the search space more effectively under ideal conditions. However, practical implementations need to carefully balance the overhead of initial calculations against the benefits of fewer iterations. Future work will focus on optimizing the transition point between the improved and traditional binary search phases and exploring adaptive techniques based on data distribution.
+
+## Acknowledgments ##
+This research was conducted using MacBook Pro 2020 and MacBook Air M2, with varying system specifications which contributed to performance differences observed.
+
+## References ##
+Performance data and additional details can be accessed in the ongoing experiment notes and logs, as documented in the research files and online repositories that will be linked in this report.
